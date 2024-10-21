@@ -3,7 +3,7 @@ import React from 'react';
 const Menu = ({ menuItems, addToOrder }) => {
   return (
     <div>
-      <h2>Menú</h2>
+      <h2>Menú 📖</h2>
       <ul>
         {menuItems.map((item) => (
           <li key={item.id}>

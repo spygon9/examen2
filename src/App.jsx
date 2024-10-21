@@ -20,9 +20,10 @@ const App = () => {
 
   return (
     <div>
-      <h1>Gestión de Órdenes de Menú</h1>
+      <h1>Gestión de Órdenes de Menú 🍽️</h1>
       <Menu menuItems={menuItems} addToOrder={addToOrder} />
       <Order orderItems={order} total={calculateTotal()} />
+      <a href="https://github.com/spygon9/examen2" target="_blank"> Repositorio </a>
     </div>
   );
 };

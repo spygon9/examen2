@@ -3,7 +3,7 @@ import React from 'react';
 const Order = ({ orderItems, total }) => {
   return (
     <div>
-      <h2>Orden</h2>
+      <h2>Orden 📝</h2>
       <ul>
         {orderItems.map((item, index) => (
           <li key={index}>
@@ -11,7 +11,7 @@ const Order = ({ orderItems, total }) => {
           </li>
         ))}
       </ul>
-      <h3>Total: ${total}</h3>
+      <h3>Total 💵: ${total}</h3>
     </div>
   );
 };
