@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Order = ({ orderItems, total }) => {
+const Order = ({ orderItems }) => {
   return (
     <div>
       <h2>Orden 📝</h2>
@@ -11,7 +11,6 @@ const Order = ({ orderItems, total }) => {
           </li>
         ))}
       </ul>
-      <h3>Total 💵: ${total}</h3>
     </div>
   );
 };
