@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Menu from './components/Menu';
-import Order from './components/Orden';
+import Order from './components/Order';
 import Pagar from './components/Pagar';
 
 const App = () => {
+  const [menuItems, setMenuItems] = useState([]);
   const [order, setOrder] = useState([]);
-  const [isPaid, setIsPaid] = useState(false); // Estado para manejar el pago
+  const [isPaid, setIsPaid] = useState(false);
 
-  const menuItems = [
-    { id: 1, name: 'Hamburguesa', price: 8 },
-    { id: 2, name: 'Pizza', price: 12 },
-    { id: 3, name: 'Ensalada', price: 6 },
-  ];
+  // Función para obtener los elementos del menú desde la API
+  useEffect(() => {
+    fetch('https://api-menu-9b5g.onrender.com/menu')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => setMenuItems(data))
+      .catch((error) => console.error('Error fetching menu:', error));
+  }, []);
 
   const addToOrder = (item) => {
     setOrder([...order, item]);
@@ -23,7 +31,7 @@ const App = () => {
 
   const handlePayment = () => {
     setIsPaid(true);
-    setOrder([]); // Reiniciar la orden después de pagar (opcional)
+    setOrder([]); // Reiniciar la orden después de pagar
   };
 
   return (
@@ -31,7 +39,6 @@ const App = () => {
       <h1>Gestión de Órdenes de Menú 🍽️</h1>
       <Menu menuItems={menuItems} addToOrder={addToOrder} />
       <Order orderItems={order} />
-
         <Pagar 
           handlePayment={handlePayment} 
           total={calculateTotal()} 
