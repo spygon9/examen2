@@ -1,19 +1,38 @@
 import React from 'react';
+import { getMenu } from '../services/menuApi';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-const Menu = ({ menuItems, addToOrder }) => {
+
+export const Menu = () => {
+  const [item, setItems]
+  const [loading, setLoading] = useState(true);
+
+  useEffect(( => {
+    fetch("ttps://api-menu-9b5g.onrender.com/menu")
+      .then((response) => response.json())
+      .then((data) => {
+        setItems(data);
+        setLoading(false);
+      });
+  }, []));
+  
   return (
-    <div>
-      <h2>Menú 📖</h2>
-      <ul>
-        {menuItems.map((item) => (
-          <li key={item.id}>
-            {item.name} - ${item.price}
-            <button onClick={() => addToOrder(item)}>Agregar</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+    <h1>Menu</h1>
+    
+    {loading ? (
+      <h3>Loading...</h3>
+    ) : (
+      items.map((item) => (
+        <Item 
+          key ={item.id}
+          name = {item.name}
+          description = {item.description}
+          price = {item.price}
+        />
+      ))
+    )}
+    </>
   );
 };
-
-export default Menu;
